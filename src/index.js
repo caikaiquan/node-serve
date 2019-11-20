@@ -5,7 +5,6 @@ import bodyParser from 'koa-bodyparser';
 import Cors from 'koa2-cors';
 import serve from 'koa-static';
 
-
 const app = new Koa();
 
 // 配置静态资源目录
@@ -34,8 +33,9 @@ let getIPAdress = () => {
 
 let IpAddress = getIPAdress();
 console.log(`\x1B[33m%s\x1B[39m`,'App running at: ')
-console.log(`\x1B[35m%s\x1B[39m`,` - Local: http://localhost/:4000`);
+console.log(`\x1B[35m%s\x1B[39m`,` - Local: http://localhost:4000`);
 console.log(`\x1B[36m%s\x1B[39m`,` - Network: http://${IpAddress}:4000`);
+console.log('')
 app.listen(4000);
 // var styles = {
 //     'bold'          : ['\x1B[1m%s\x1B[22m'],
