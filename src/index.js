@@ -33,10 +33,9 @@ let getIPAdress = () => {
 
 let IpAddress = getIPAdress();
 console.log(`\x1B[33m%s\x1B[39m`,'App running at: ')
-console.log(`\x1B[35m%s\x1B[39m`,` - Local: http://localhost:4000`);
-console.log(`\x1B[36m%s\x1B[39m`,` - Network: http://${IpAddress}:4000`);
-console.log('')
-app.listen(4000);
+console.log(`\x1B[35m%s\x1B[39m`,` - Local: http://localhost:8080`);
+console.log(`\x1B[36m%s\x1B[39m`,` - Network: http://${IpAddress}:8080`);
+app.listen(8080);
 // var styles = {
 //     'bold'          : ['\x1B[1m%s\x1B[22m'],
 //     'italic'        : ['\x1B[3m%s\x1B[23m'],
