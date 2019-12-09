@@ -8,9 +8,9 @@ const config = {
     database: {
         DATABASE: 'test',
         USERNAME: 'root',
-        PASSWORD: '123456',
+        PASSWORD: 'Caikq@2019',
         PORT: '3306',
-        HOST: 'localhost'
+        HOST: '111.229.45.205'
     }
 }
 
@@ -22,7 +22,7 @@ const pool = mysql.createPool({
 });
 pool.getConnection(function (err, connection) {
     if(err){
-        console.log('数据库连接失败',err)
+        console.log('数据库连接失败111',err)
     }else{
         console.log('\x1B[36m%s\x1B[39m','数据库连接成功')
     }
@@ -36,7 +36,7 @@ class MysqlConnection {
         return new Promise((resolve, reject) => {
             pool.query(sql, function (error, results, fields) {
                 if (error) {
-                    resolve({code:"9999",msg:"数据库访问失败"})
+                    resolve({code:"9999",msg:"数据库访问失败222",err:error})
                 };
                 resolve(results)
             });
