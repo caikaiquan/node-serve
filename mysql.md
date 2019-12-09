@@ -71,6 +71,8 @@ insert into product(pid,pname,price,category_id) values('p007','劲霸','2000','
 insert into product(pid,pname,price,category_id) values('p008','香奈儿','800','c003');
 insert into product(pid,pname,price,category_id) values('p009','相宜本草','200','c003');
 
+3. 添加数据报错（1366 - Incorrect string value: '\xE5\xAE\xB6\xE7\x94\xB5' for column 'cname' at row 1）
+运行 alter table `表名` convert to character set utf8;
 
 https://www.cnblogs.com/wjw1014/p/10851218.html
 ```
