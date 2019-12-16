@@ -12,6 +12,13 @@ const config = {
         PORT: '3306',
         HOST: '111.229.45.205'
     }
+    // database: {
+    //     DATABASE: 'test',
+    //     USERNAME: 'root',
+    //     PASSWORD: '123456',
+    //     PORT: '3306',
+    //     HOST: 'localhost'
+    // }
 }
 
 const pool = mysql.createPool({
@@ -24,7 +31,7 @@ pool.getConnection(function (err, connection) {
     if(err){
         console.log('数据库连接失败111',err)
     }else{
-        console.log('\x1B[36m%s\x1B[39m','数据库连接成功')
+        console.log('\x1B[36m%s\x1B[39m',' - 数据库连接成功')
     }
 });
 

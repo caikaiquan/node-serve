@@ -74,6 +74,9 @@ insert into product(pid,pname,price,category_id) values('p009','相宜本草','2
 3. 添加数据报错（1366 - Incorrect string value: '\xE5\xAE\xB6\xE7\x94\xB5' for column 'cname' at row 1）
 运行 alter table `表名` convert to character set utf8;
 
+4. 更新数据
+UPDATE user SET token=null,token_time=null WHERE token='47dcd432fd2c6e70907c880a07bfaa65';
+
 https://www.cnblogs.com/wjw1014/p/10851218.html
 ```
 
