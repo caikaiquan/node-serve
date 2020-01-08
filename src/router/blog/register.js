@@ -22,7 +22,7 @@ const sql = new MysqlConnection();
 //     }
 // })
 
-router.post('/register', async (ctx, next) => {
+router.post('/blog/register', async (ctx, next) => {
     let option = ctx.request.body;
     let username = option.username;
     let pass = option.pass;

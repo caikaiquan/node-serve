@@ -1,12 +1,22 @@
 import Router from 'koa-router';
 import MysqlConnection from '../../mysql/index'
 import md5 from 'js-md5'
+// import jwt from 'jsonwebtoken'
 import {InvalidTokenTime,errorRes,success} from '../common.js'
 
 const router = new Router();
 const sql = new MysqlConnection();
 
-router.post('/sign', async (ctx, next) => {
+
+// const secret = 'jwt demo'
+
+router.get('/test',async(ctx,next) =>{
+    setTimeout(() =>{
+        ctx.response.body = {code:'0000',msg:'这是一个测试接口'};
+    },50)
+})
+
+router.post('/blog/sign', async (ctx, next) => {
     let option = ctx.request.body;
     let username = option.username;
     let pass = option.pass;
@@ -22,6 +32,11 @@ router.post('/sign', async (ctx, next) => {
             let token = md5(username+pass);
             let token_time = InvalidTokenTime();
             let handleSign = await sql.select(`UPDATE user SET token='${token}',token_time='${token_time}' WHERE username='${username}';`)
+            // // 生成token
+            // let userToken = {
+            //     name: username
+            // }
+            // const jwdToken = jwt.sign(userToken, secret, {expiresIn: '1h'})
             ctx.response.body = { ...success, msg: "登录成功",user:{token,username}};
         }
     }else {

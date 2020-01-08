@@ -1,6 +1,6 @@
-import Router from 'koa-router'
-import md5 from 'js-md5'
+import Router from 'koa-router';
 import MysqlConnection from '../../mysql/index'
+import md5 from 'js-md5'
 import { handleCreateTime, InvalidTokenTime, errorRes, success } from '../common.js'
 
 const router = new Router();
@@ -34,18 +34,32 @@ router.post('/blog/mavoneditor', async (ctx, next) => {
     let modify = option.modify;
     if(!modify){
         let res = await sql.select(`INSERT INTO article_table(author,create_time,updata_time,article_id,content,title,article_type,article_describe) VALUES('${author}','${create_time}','${updata_time}','${article_id}','${content}','${title}','${article_type}','${article_describe}');`)
-        ctx.response.body = {...success,msg:'添加成功'};
+        ctx.response.body = {...success,msg:'添加成功',article_id};
     }else{
         updata_time = handleCreateTime();
         // UPDATE user SET token=null,token_time=null WHERE token='47dcd432fd2c6e70907c880a07bfaa65';
         // let res = await sql.select(`INSERT INTO article_table(author,create_time,updata_time,article_id,content,title,article_type,article_describe) VALUES('${author}','${create_time}','${updata_time}','${article_id}','${content}','${title}','${article_type}','${article_describe}');`)
-        let res = await sql.select(`UPDATE article_table SET updata_time=${updata_time},content=${content},title=${title},article_type=${article_type},article_describe=${article_describe} WHERE article_id=${article_id};`)
-        ctx.response.body = {...success,msg:'修改文章成功'};
+        let res = await sql.select(`UPDATE article_table SET updata_time="${updata_time}",content='${content}',title='${title}',article_type='${article_type}',article_describe='${article_describe}' WHERE article_id='${article_id}';`)
+        ctx.response.body = {...success,msg:'修改文章成功',article_id};
     }
 })
 
+router.post('/blog/bloglist',async(ctx,next) =>{
+    let option = ctx.request.body;
+    let size = option.size || 10;
+    let page = option.page || 1;    
+    let startIndex = (page-1)*size; 
+    let res = await sql.select(`SELECT author,updata_time,create_time,article_id,title,article_type from article_table Order by create_time desc LIMIT ${startIndex},${size};`);
+    let totalRes = await sql.select(`SELECT COUNT(*) as total FROM article_table;`)
+    let total = JSON.parse(JSON.stringify(totalRes))[0].total;
+    if(res.length){
+        ctx.response.body = {...success,msg:"查询成功",data:res,total}
+    }else{
+        ctx.response.body = {...success,msg:"接口报错"}
+    }
+});
 
-router.get('/getarticleContent',async(ctx,next) =>{
+router.get('/blog/getarticleContent',async(ctx,next) =>{
     let query = ctx.request.query;
     let id = query.id;
     let res = await sql.select(`SELECT * from article_table WHERE article_id='${id}';`);

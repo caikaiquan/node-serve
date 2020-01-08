@@ -6,7 +6,9 @@ import Register from './blog/register'
 import Sign from './blog/Sign'
 import Logout from './blog/logout'
 import UploadFile from './uploadFile/uploadFile'
-import Mavoneditor from './blog/Mavoneditor'
+// import Mavoneditor from './blog/Mavoneditor'
+// import BlogLIst from './blog/bloglist'
+import BlogCommon from './blog/blogCommon.js'
 const router = combineRouters(
     Login,
     Hello,
@@ -15,7 +17,9 @@ const router = combineRouters(
     Sign,
     Logout,
     UploadFile,
-    Mavoneditor
+    // Mavoneditor,
+    // BlogLIst,
+    BlogCommon
 )
 
 

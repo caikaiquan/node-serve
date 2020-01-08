@@ -77,6 +77,18 @@ insert into product(pid,pname,price,category_id) values('p009','相宜本草','2
 4. 更新数据
 UPDATE user SET token=null,token_time=null WHERE token='47dcd432fd2c6e70907c880a07bfaa65';
 
+5. 分页查询
+SELECT author,updata_time,create_time,article_id,title,article_type from article_table Order by create_time desc LIMIT 0,2;
+// 分页查询 LIMIT (page*size),size;
+// Order by create_time desc  降序
+// Order by create_time asc   升序
+
+6. 分页总计
+SELECT COUNT(*) as total FROM article_table;
+
+
+
+
 https://www.cnblogs.com/wjw1014/p/10851218.html
 ```
 
