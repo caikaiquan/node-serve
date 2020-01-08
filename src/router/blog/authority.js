@@ -3,6 +3,7 @@ import {InvalidTokenTime} from '../common.js'
 const sql = new MysqlConnection();
 const authority = async (ctx, next) => {
     let url = ctx.url;
+    console.log('url-----'+url,'time==='+InvalidTokenTime())
     if(url.includes('/blog')){
         if(url.includes("?")){
             url = url.split('?')[0];
@@ -10,7 +11,6 @@ const authority = async (ctx, next) => {
         if (['/blog/logout', '/blog/sign','/blog/register','/blog/bloglist','/blog/getarticleContent'].includes(url)) {
             await next();
         } else {
-            console.log(33333)
             let token = ctx.request.headers.token;
             if (!token) {
                 ctx.response.body = { code: '6666', msg: '用户未登录请先登录！' };

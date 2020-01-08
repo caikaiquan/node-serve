@@ -36,10 +36,10 @@ router.post('/blog/register', async (ctx, next) => {
         let create_time = handleCreateTime();
         let token = md5(username+pass);
         let token_time = InvalidTokenTime();
-        console.log('token_time',token_time)
+        // console.log('token_time',token_time)
         let res = await sql.select(`INSERT INTO user(username,pass,create_time,token,token_time) VALUES ('${username}','${pass}','${create_time}','${token}','${token_time}')`);
         if(res){
-            console.log(res);
+            // console.log(res);
             ctx.response.body = { ...success, msg: "注册成功",user:{token,username}};
         }
     } else {
