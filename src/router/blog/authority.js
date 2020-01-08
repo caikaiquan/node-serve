@@ -1,9 +1,9 @@
 import MysqlConnection from '../../mysql/index'
-import {InvalidTokenTime} from '../common.js'
+import {InvalidTokenTime,handleCreateTime} from '../common.js'
 const sql = new MysqlConnection();
 const authority = async (ctx, next) => {
     let url = ctx.url;
-    console.log('url-----'+url,'time==='+InvalidTokenTime())
+    console.log('url-----'+url,'time==='+handleCreateTime())
     if(url.includes('/blog')){
         if(url.includes("?")){
             url = url.split('?')[0];
