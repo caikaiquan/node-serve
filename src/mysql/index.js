@@ -5,20 +5,20 @@ const config = {
     // 启动端口
     port: 3000,
     // 数据库配置
-    database: {
-        DATABASE: 'test',
-        USERNAME: 'root',
-        PASSWORD: 'Caikq@2019',
-        PORT: '3306',
-        HOST: '111.229.45.205'
-    }
     // database: {
     //     DATABASE: 'test',
     //     USERNAME: 'root',
-    //     PASSWORD: '123456',
+    //     PASSWORD: 'Caikq@2019',
     //     PORT: '3306',
-    //     HOST: 'localhost'
+    //     HOST: '111.229.45.205'
     // }
+    database: {
+        DATABASE: 'test',
+        USERNAME: 'root',
+        PASSWORD: '123456',
+        PORT: '3306',
+        HOST: 'localhost'
+    }
 }
 
 const pool = mysql.createPool({

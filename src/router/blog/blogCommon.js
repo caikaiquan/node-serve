@@ -60,6 +60,7 @@ router.post('/blog/mavoneditor', async (ctx, next) => {
     let modify = option.modify;
     if(!modify){
         let res = await sql.select(`INSERT INTO article_table(author,create_time,updata_time,article_id,content,title,article_type,article_describe) VALUES('${author}','${create_time}','${updata_time}','${article_id}','${content}','${title}','${article_type}','${article_describe}');`)
+        console.log(res);
         ctx.response.body = {...success,msg:'添加成功',article_id};
     }else{
         updata_time = handleCreateTime();

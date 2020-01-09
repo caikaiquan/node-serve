@@ -86,7 +86,8 @@ SELECT author,updata_time,create_time,article_id,title,article_type from article
 6. 分页总计
 SELECT COUNT(*) as total FROM article_table;
 
-
+7. 数据删除 
+DELETE FROM category WHERE categoryName='${option.categoryName}' AND categoryId='${option.categoryId}';
 
 
 https://www.cnblogs.com/wjw1014/p/10851218.html
