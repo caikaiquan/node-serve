@@ -9,7 +9,7 @@ const webpackconfig = {
     },
     output: {
         filename: "[name].js",
-        path: path.join(__dirname, "./dist")
+        path: path.join(__dirname, "./bundle")
     },
     devtool:'eval-source-map',
     module: {
