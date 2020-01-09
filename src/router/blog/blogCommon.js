@@ -6,6 +6,32 @@ import { handleCreateTime, InvalidTokenTime, errorRes, success } from '../common
 const router = new Router();
 const sql = new MysqlConnection();
 
+
+router.get('/blog/categoryList',async(ctx,next) =>{
+    let res = await sql.select(`select * from category`);
+    ctx.response.body = {...success,list:res};
+})
+
+router.post('/blog/add/category', async(ctx,next) =>{
+    let option = ctx.request.body;
+    if(!option.categoryName || !option.categoryId){
+        ctx.response.body = {...errorRes,msg:'缺少必要参数'}
+    }else{
+        let res = await sql.select(`INSERT INTO category(categoryName,categoryId) VALUES('${option.categoryName}','${option.categoryId}')`);
+        ctx.response.body = {...success,msg:'新增类型成'}
+    }
+})
+
+router.post('/blog/delete/category', async(ctx,next) =>{
+    let option = ctx.request.body;
+    if(!option.categoryName || !option.categoryId){
+        ctx.response.body = {...errorRes,msg:'缺少必要参数'}
+    }else{
+        let res = await sql.select(`DELETE FROM category WHERE categoryName='${option.categoryName}' AND categoryId='${option.categoryId}';`);
+        ctx.response.body = {...success,msg:'删除成功'};
+    }
+})
+
 router.post('/blog/mavoneditor', async (ctx, next) => {
     let option = ctx.request.body;
     let token = ctx.request.headers.token;
